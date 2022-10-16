@@ -40,4 +40,33 @@ complement_pair = 10 - 1 = 9
 // console.log(twoSum([3, 2, 4], 6)); // return [1, 2]
 // console.log(twoSum([3, 3], 6)); // return [0, 1]
 
-// ? -----------------------------------------------------------------
+// 9. Palindrome Number ---------------------------------------------------------------
+
+var isPalindrome = (x) => {
+  // let num = String(x);
+  let numReverse = String(x).split("").reverse().join("");
+  if (x == numReverse) {
+    return true;
+  } else {
+    return false;
+  }
+};
+console.log(isPalindrome(121); // true
+console.log(isPalindrome(-121)); // false
+console.log(isPalindrome(102)); // false
+
+// function extractMiddle(str) {
+//   var position;
+//   var length;
+//   if (str.length % 2 == 1) {
+//     position = str.length / 2;
+//     length = 1;
+//   } else {
+//     position = str.length / 2 - 1;
+//     length = 2;
+//   }
+//   return str.substring(position, position + length);
+// }
+// console.log(extractMiddle("12345"));
+
+//  ---------------------------------------------------------------
