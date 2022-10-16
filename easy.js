@@ -43,7 +43,6 @@ complement_pair = 10 - 1 = 9
 // 9. Palindrome Number ---------------------------------------------------------------
 
 var isPalindrome = (x) => {
-  // let num = String(x);
   let numReverse = String(x).split("").reverse().join("");
   if (x == numReverse) {
     return true;
@@ -51,10 +50,11 @@ var isPalindrome = (x) => {
     return false;
   }
 };
-console.log(isPalindrome(121); // true
-console.log(isPalindrome(-121)); // false
-console.log(isPalindrome(102)); // false
+// console.log(isPalindrome(121)); // true
+// console.log(isPalindrome(-121)); // false
+// console.log(isPalindrome(102)); // false
 
+// How to find the middle index of a number -
 // function extractMiddle(str) {
 //   var position;
 //   var length;
@@ -68,5 +68,31 @@ console.log(isPalindrome(102)); // false
 //   return str.substring(position, position + length);
 // }
 // console.log(extractMiddle("12345"));
+
+// 13. Roman to Integer ---------------------------------------------------------------
+
+var romanToInt = function (s) {
+  const map = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+  let res = 0;
+  s.split("").forEach((num, i) => {
+    if (map[num] < map[s[i + 1]]) {
+      res -= map[num];
+    } else {
+      res += map[num];
+    }
+  });
+  return res;
+};
+console.log(romanToInt("III")); // return 3
+console.log(romanToInt("LVIII")); // return 58
+console.log(romanToInt("MCMXCIV")); // return 1994
 
 //  ---------------------------------------------------------------
