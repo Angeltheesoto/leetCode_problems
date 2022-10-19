@@ -166,6 +166,58 @@ var isValid = function (s) {
 
 // 21. Merge Two Sorted Lists ----------------------------------------------------------
 
-var mergeTwoLists = function (list1, list2) {};
+// Uses linked list Data Structure and Recursion algorithm
+// var mergeTwoLists = function (list1, list2) {
+//   // return [list1, list2];
+//   let stack = [];
 
-console.log(mergeTwoLists([1, 2, 4], [1, 3, 4]));
+//   for (let i = 0; i < list1.length; i++) {
+//     for (let j = 0; j < list2.length; j++) {
+//       if (list1[i] === list2[j]) {
+//         stack.push(list1[i], list2[j]);
+//       }
+//     }
+//   }
+
+//   const spreaded = [...list1, ...list2];
+//   const nonMatches = spreaded.filter((el) => {
+//     return !(list1.includes(el) && list2.includes(el));
+//   });
+
+//   let mid = stack[Math.floor((stack.length - 1) / 2)];
+//   mid.push(nonMatches);
+
+//   return stack;
+// };
+
+// console.log(mergeTwoLists([1, 2, 4], [1, 3, 4]));
+
+// time complexity O(n+m)
+// space complexity O(1)
+function ListNode(val, next) {
+  this.val = val === undefined ? 0 : val;
+  this.next = next === undefined ? null : next;
+}
+var mergeTwoLists = function (list1, list2) {
+  let curr = new ListNode(0);
+  let head = curr;
+  while (list1 && list2) {
+    if (list1.val <= list2.val) {
+      curr.next = list1;
+      list1 = list1.next;
+    } else {
+      curr.next = list2;
+      list2 = list2.next;
+    }
+    curr = curr.next;
+  }
+  if (list1 !== null) {
+    curr.next = list1;
+  } else {
+    curr.next = list2;
+  }
+  return head.next;
+};
+
+// console.log(mergeTwoLists([1, 2, 4], [1, 3, 4]));
+// mergeTwoLists([1, 2, 4], [1, 3, 4]);
