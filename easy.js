@@ -127,5 +127,45 @@ var longestCommonPrefix = function (strs) {
 //   return prefix;
 // };
 
-console.log(longestCommonPrefix(["flower", "flow", "flight"])); // 'fl'
-console.log(longestCommonPrefix(["dog", "docecar", "dor"])); // ''
+// console.log(longestCommonPrefix(["flower", "flow", "flight"])); // 'fl'
+// console.log(longestCommonPrefix(["dog", "docecar", "dor"])); // ''
+
+// 20. Valid Parentheses ----------------------------------------------------------
+
+// time complexity O(N) - because we have to iterate through every single character in the string.
+// space complexity O(N) - because
+var isValid = function (s) {
+  let stack = [];
+  let hashMap = {
+    "(": ")",
+    "[": "]",
+    "{": "}",
+  };
+
+  for (let ch of s) {
+    if (hashMap[ch]) {
+      // ch is an opening bracket
+      stack.push(hashMap[ch]);
+    } else if (stack.length > 0 && stack[stack.length - 1] === ch) {
+      // ch is a closing bracket and top of stack matches
+      stack.pop();
+    } else {
+      // ch is a closing bracket and top of the stack doesn't match
+      return false;
+    }
+  }
+  return stack.length === 0;
+};
+
+// console.log(isValid("()")); // True
+// console.log(isValid("()[]{}")); // True
+// console.log(isValid("(]")); // False
+// console.log(isValid("(){}}{")); // False
+// console.log(isValid("([]){")); // False
+// console.log(isValid("{[]}")); // True
+
+// 21. Merge Two Sorted Lists ----------------------------------------------------------
+
+var mergeTwoLists = function (list1, list2) {};
+
+console.log(mergeTwoLists([1, 2, 4], [1, 3, 4]));
