@@ -221,3 +221,70 @@ var mergeTwoLists = function (list1, list2) {
 
 // console.log(mergeTwoLists([1, 2, 4], [1, 3, 4]));
 // mergeTwoLists([1, 2, 4], [1, 3, 4]);
+
+// 26. Remove Duplicates from Sorted Array ----------------------------------------------------------
+
+// var removeDuplicates = function (nums) {
+//   uniq = [...new Set(nums)];
+//   let numsLength = nums.length;
+//   let newNumsLength = uniq.length;
+//   let underscores = numsLength - newNumsLength;
+//   for (let i = 0; i < underscores; i++) {
+//     uniq.push("_")[i];
+//   }
+//   return uniq;
+// };
+
+var removeDuplicates = function (nums) {
+  let index = 1;
+  for (let i = 0; i < nums.length - 1; i++) {
+    if (nums[i] !== nums[i + 1]) {
+      nums[index] = nums[i + 1];
+      index++;
+    }
+  }
+  return index;
+};
+
+// console.log(removeDuplicates([1, 1, 2]));
+// console.log(removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4]));
+
+// 27. Remove Element ----------------------------------------------------------
+
+/*
+1. create index variable (starting at 0.)
+2. Loop through index.
+  a. Condition if current value doesn't equal "val".
+    i. Set nums[index] to nums[i]
+    ii. Increment index.
+3. Return index
+*/
+var removeElement = function (nums, val) {
+  let index = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== val) {
+      nums[index] = nums[i];
+      index++;
+    }
+  }
+  return index;
+};
+// Time complexity - O(N)
+// Space complexity - O(1)
+
+// console.log(removeElement([3, 2, 2, 3], 3));
+// console.log(removeElement([0, 1, 2, 2, 3, 0, 4, 2], 2));
+
+// 58. Length of Last Word ----------------------------------------------------------
+
+function lengthOfLastWord(s) {
+  let newArr = s.split(" ");
+  newArr = newArr.filter((el) => {
+    return /\S/.test(el);
+  });
+  let lastIndex = newArr.pop();
+  return lastIndex.length;
+}
+// console.log(lengthOfLastWord("Hello World")); // 5
+// console.log(lengthOfLastWord("   fly me   to   the moon  ")); // 4
+// console.log(lengthOfLastWord("luffy is still joyboy")); // 6
