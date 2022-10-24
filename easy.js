@@ -278,13 +278,55 @@ var removeElement = function (nums, val) {
 // 58. Length of Last Word ----------------------------------------------------------
 
 function lengthOfLastWord(s) {
+  // turn the string into an array
   let newArr = s.split(" ");
+  // remove all the blank, spaces in the array
   newArr = newArr.filter((el) => {
     return /\S/.test(el);
   });
+  // remove the last element in the array
   let lastIndex = newArr.pop();
+  // return the last element
   return lastIndex.length;
 }
 // console.log(lengthOfLastWord("Hello World")); // 5
 // console.log(lengthOfLastWord("   fly me   to   the moon  ")); // 4
 // console.log(lengthOfLastWord("luffy is still joyboy")); // 6
+
+// 66. Plus One ----------------------------------------------------------
+
+// Without BigInt
+function plusOne(digits) {
+  let num = digits.join("");
+  num = parseInt(num);
+  num = num + 1;
+  num = num.toString();
+  num = num.split("");
+  return num;
+}
+// With BigInt
+function plusOne(digits) {
+  // turn the array to a string
+  let num = digits.join("");
+  // turn the string to a Big number and add 1 to it
+  num = BigInt(num);
+  num = num + BigInt(1);
+  // turn the string back to an array
+  num = num.toString();
+  num = num.split("");
+  return num;
+}
+
+// console.log(plusOne([1, 2, 3])); // [1, 2, 4]
+// console.log(plusOne([4, 3, 2, 1])); // [4, 3, 2, 2]
+// console.log(plusOne([9])); // [1, 0]
+// console.log(plusOne([6, 1, 4, 5, 3, 9, 0, 1, 9, 5, 1, 8, 6, 7, 0, 5, 5, 4, 3])); // [1, 0]
+
+// 67. Add Binary ----------------------------------------------------------
+
+function addBinary(a, b) {
+  return a, b;
+}
+
+console.log(addBinary("11", "1")); // 100
+console.log(addBinary("1010", "1011")); // '10101
