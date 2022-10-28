@@ -324,9 +324,77 @@ function plusOne(digits) {
 
 // 67. Add Binary ----------------------------------------------------------
 
+// Binary addition - Rules
+// 0 + 0 = 0
+// 0 + 1 = 1
+// 1 + 0 = 1
+// 1 + 1 = 0, carry over the 1, i.e. 10
+
 function addBinary(a, b) {
-  return a, b;
+  // return (parseInt(a, 2) + parseInt(b, 2)).toString(2);
+  // OR --
+  let sum = "";
+  let carry = 0;
+  let i = a.length - 1;
+  let j = b.length - 1;
+  while (i >= 0 || j >= 0) {
+    let A = a[i] ? a[i] : "0";
+    let B = b[j] ? b[j] : "0";
+    sum = String(A ^ B ^ carry) + sum;
+    if (A === B && A !== String(carry)) {
+      carry = Number(!carry);
+    }
+    i--;
+    j--;
+  }
+  if (carry) {
+    sum = String(carry) + sum;
+  }
+  return sum;
 }
 
-console.log(addBinary("11", "1")); // 100
-console.log(addBinary("1010", "1011")); // '10101
+// console.log(addBinary("11", "1")); // 100
+// console.log(addBinary("1010", "1011")); // '10101
+
+// 69. Sqrt(x) ----------------------------------------------------------
+
+function mySqrt(x) {
+  // return Math.sqrt(x);
+  // for (let i = 0; i <= x; i++) {
+  //   if (x[i] ** 2 === x) {
+  //     return x[i];
+  //   }
+  // }
+  if (x <= 1) {
+    return x;
+  }
+  for (let i = 2; i <= x; i++) {
+    if (i * i === x) {
+      return i;
+    }
+    if (i * i > x) {
+      return i - 1;
+    }
+  }
+}
+
+// console.log(mySqrt(4)); // 2
+// console.log(mySqrt(8)); // 2.82842... round to 2
+
+// 70. Climbing Stairs ----------------------------------------------------------
+
+// time complexity - O(n)
+function climbStairs(n) {
+  const memo = [1, 1, 2];
+  for (let i = 3; i <= n; i++) {
+    memo[i] = memo[i - 1] + memo[i - 2];
+  }
+  return memo[n];
+}
+
+// console.log(climbStairs(1));
+// console.log(climbStairs(2));
+// console.log(climbStairs(3));
+// console.log(climbStairs(4));
+
+//  ----------------------------------------------------------
