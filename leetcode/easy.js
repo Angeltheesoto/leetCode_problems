@@ -194,9 +194,11 @@ var isValid = function (s) {
 
 // time complexity O(n+m)
 // space complexity O(1)
-function ListNode(val, next) {
-  this.val = val === undefined ? 0 : val;
-  this.next = next === undefined ? null : next;
+class ListNode {
+  constructor(val, next) {
+    this.val = val === undefined ? 0 : val;
+    this.next = next === undefined ? null : next;
+  }
 }
 var mergeTwoLists = function (list1, list2) {
   let curr = new ListNode(0);
@@ -397,4 +399,139 @@ function climbStairs(n) {
 // console.log(climbStairs(3));
 // console.log(climbStairs(4));
 
-//  ----------------------------------------------------------
+// 83. Remove Duplicates from Sorted List ---------------------------------------------
+// class Queue {
+//   constructor(val, next) {
+//     this.val = val === undefined ? 0 : val;
+//     this.next = next === undefined ? null : next;
+//   }
+// }
+// function ListNode(val, next) {
+//   this.val = val === undefined ? 0 : val;
+//   this.next = next === undefined ? null : next;
+// }
+function deleteDuplicates(head) {
+  let dummy = new ListNode(-Infinity, head);
+  let curr = head;
+  let prev = dummy;
+
+  while (curr) {
+    if (curr.val === prev.val) {
+      while (curr && curr.val === prev.val) {
+        curr = curr.next;
+      }
+      prev.next = curr;
+    } else {
+      prev = curr;
+      curr = curr.next;
+    }
+  }
+  return dummy.next;
+}
+// console.log(deleteDuplicates([1, 1, 2]));
+// console.log(deleteDuplicates([1, 1, 2, 3, 3]));
+
+// 88. Merge Sorted Array ---------------------------------------------
+// time complexity - O(m + n) = O(n)
+function merge(nums1, m, nums2, n) {
+  let first = n - 1;
+  let second = n - 1;
+  let i = m + n - 1;
+
+  while (second >= 0) {
+    let fVal = nums1[first];
+    let sVal = nums2[second];
+
+    if (fVal > sVal) {
+      nums1[i] = fVal;
+      i--;
+      first--;
+    } else {
+      nums1[i] = sVal;
+      i--;
+      second--;
+    }
+  }
+  return nums1;
+
+  // return `Parameters are, nums1: ${nums1}, m: ${m}, nums2: ${nums2}, n: ${n} `;
+  // const arr1 = nums1.slice(0, m);
+  // const arr2 = nums2.slice(0, n);
+  // for (let i = 0; i < arr2.length; i++) {
+  //   arr1.push(arr2[i]);
+  // }
+  // for (let i = 0; i < arr1.length; i++) {
+  //   for (let j = i + 1; j < arr1.length; j++) {
+  //     if (arr1[i] > arr1[j]) {
+  //       temp = arr1[i];
+  //       arr1[i] = arr1[j];
+  //       arr1[j] = temp;
+  //     }
+  //   }
+  // }
+  // return arr1;
+}
+// console.log(merge([1, 2, 3, 0, 0, 0], 3, [2, 5, 6], 3)); // [1,2,2,3,5,6]
+// console.log(merge([1], 1, [], 0)); // [1]
+// console.log(merge([0], 0, [1], 1)); // [1]
+
+// 94. Binary Tree Inorder Traversal ---------------------------------------------
+// time complexity - O(-)
+
+function inorderTraversal(root) {
+  let node = root;
+  const result = [];
+  while (node) {
+    if (node.left) {
+      result.push(node.val);
+      node = node.right;
+    } else {
+      const pred = findPredecessor(node);
+      if (pred.right === node) {
+        pred.right = nullresult.push(node.val);
+        node = node.right;
+      } else {
+        pred.right = node;
+        node = node.left;
+      }
+    }
+  }
+  return result;
+
+  // let tourist = root;
+  // let solution = [];
+
+  // while (tourist !== null) {
+  //   let guide = tourist.left;
+
+  //   if (tourist.left !== null) {
+  //     while (guide.right !== null && guide.right !== tourist) {
+  //       guide = guide.right;
+  //     }
+  //     if (guide.right === null) {
+  //       guide.right = tourist;
+  //       tourist = tourist.left;
+  //     } else {
+  //       guide.right = null;
+  //       solution.push(tourist.val);
+  //       tourist = tourist.right;
+  //     }
+  //   } else {
+  //     solution.push(tourist.val);
+  //     tourist = tourist.right;
+  //   }
+  // }
+  // return solution;
+}
+
+function findePredecessor(root) {
+  let node = root.left;
+  while (node.right && node.right !== root) {
+    node = node.right;
+  }
+  return node;
+}
+
+console.log(inorderTraversal([1, null, 2, 3])); // [1,3,2]
+console.log(inorderTraversal([])); // []
+console.log(inorderTraversal([1])); // [1]
