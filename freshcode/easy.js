@@ -63,12 +63,76 @@ function finalValueAfterOperations(operations) {
 // #1470 - Shuffle the Array - Array
 function shuffle(nums, n) {
   // console.log(nums);
-  for (let i = 0; i < nums.length; i++) {}
-  console.log(nums[n]);
+  let arr = [];
+  let numOne = nums.slice(0, n);
+  let numTwo = nums.slice(n, nums.length);
+  for (let i = 0; i < numOne.length; i++) {
+    arr.push(numOne[i]);
+    arr.push(numTwo[i]);
+  }
+  // console.log(arr);
 }
 // shuffle([2, 5, 1, 3, 4, 7], 3); // [2,3,5,4,1,7]
 // shuffle([1, 2, 3, 4, 4, 3, 2, 1], 4); // [1,4,2,3,3,2,4,1]
-shuffle([1, 1, 2, 2], 2); // [1,2,1,2]
+// shuffle([1, 1, 2, 2], 2); // [1,2,1,2]
+
+// #1512 - Number of Good Pairs - Array | Hash Table | Math | Counting
+function numIdenticalPairs(nums) {
+  // console.log(nums);
+  // set a variable called goodPairs equal to 0
+  // loop through the array nums
+  // at each index compare every other index after it
+  // if the index num matches, add 1 to goodPairs
+  // when the loop is finished return the variable goodPairs
+  let goodPairs = 0;
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = 0; j < nums.length; j++) {
+      if (nums[i] === nums[j] && i < j) {
+        goodPairs = goodPairs + 1;
+      }
+    }
+  }
+  // console.log(goodPairs);
+}
+// numIdenticalPairs([1, 2, 3, 1, 1, 3]); // 4
+// numIdenticalPairs([1, 1, 1, 1]); // 6
+// numIdenticalPairs([1, 2, 3]); // 0
+
+// #1672 - Richest Customer Wealth - Array | Matrix
+function maximumWealth(accounts) {
+  // var store = 0;
+  // run a for loop accounts
+  // var sum = 0;
+  // run a for loop;
+  // we will add sum + acc[i]
+  // use a method in js to find max num;
+  let storeMaxValue = 0;
+  for (let i = 0; i < accounts.length; i++) {
+    let innerArray = accounts[i];
+    let sum = 0;
+    for (let j = 0; j < innerArray.length; j++) {
+      sum = sum + innerArray[j];
+      // console.log(sum);
+    }
+    storeMaxValue = Math.max(storeMaxValue, sum);
+  }
+  // return storeMaxValue;
+  console.log(storeMaxValue);
+}
+maximumWealth([
+  [1, 2, 3],
+  [3, 2, 1],
+]); // 6
+maximumWealth([
+  [1, 5],
+  [7, 3],
+  [3, 5],
+]); // 10
+maximumWealth([
+  [2, 8, 7], // 17
+  [7, 1, 3], // 11
+  [1, 9, 5], // 15
+]); // 17 //    43
 
 // Two Pointers problems ===============================
 
