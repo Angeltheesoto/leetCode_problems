@@ -116,8 +116,8 @@ function maximumWealth(accounts) {
     }
     storeMaxValue = Math.max(storeMaxValue, sum);
   }
-  // return storeMaxValue;
-  console.log(storeMaxValue);
+  return storeMaxValue;
+  // console.log(storeMaxValue);
 }
 maximumWealth([
   [1, 2, 3],
@@ -133,6 +133,73 @@ maximumWealth([
   [7, 1, 3], // 11
   [1, 9, 5], // 15
 ]); // 17 //    43
+
+// #2114 - Maximum Number of Words Found in Sentences - Array | String
+function mostWordsFound(sentences) {
+  let maxSentenceValue = 0;
+  for (let i = 0; i < sentences.length; i++) {
+    // /(\w+) regex = look for all words
+    // /g regex = dont stop after one
+    let wordCount = sentences[i].match(/(\w+)/g).length;
+    maxSentenceValue = Math.max(maxSentenceValue, wordCount);
+  }
+  // console.log(maxSentenceValue);
+}
+// mostWordsFound([
+//   "alice and bob love leetcode",
+//   "i think so too",
+//   "this is great thanks very much",
+// ]); // 6
+// mostWordsFound(["please wait", "continue to fight", "continue to win"]); // 3
+
+// #1431 - Kids With the Greatest Number of Candies - Array
+function kidsWithCandies(candies, extraCandies) {
+  let max = Math.max(...candies);
+  for (let i = 0; i < candies.length; i++) {
+    if (candies[i] + extraCandies >= max) {
+      candies[i] = true;
+    } else {
+      candies[i] = false;
+    }
+  }
+  console.log(candies);
+}
+
+// kidsWithCandies([2, 3, 5, 1, 3], 3); // [true,true,true,false,true]
+// kidsWithCandies([4, 2, 1, 1, 2], 1); // [true,false,false,false,false]
+// kidsWithCandies([12, 1, 12], 10); // [true,false,true]
+
+// #1365 - How Many Numbers Are Smaller Than the Current Number - Array | Hash Table | Sorting | Counting
+function smallerNumbersThanCurrent(nums) {
+  let output = [];
+  for (let i = 0; i < nums.length; i++) {
+    let count = 0;
+    for (let j = 0; j < nums.length; j++) {
+      if (nums[i] > nums[j]) {
+        count = count + 1;
+      }
+    }
+    output.push(count);
+  }
+  console.log(output);
+
+  // let output = []
+  // for(let i = 0; i < nums.length; i++){
+  //   let count = 0;
+  //   for(let j = 0; j < nums.length; j++){
+  //     if(nums[i] > nums[j] && nums[i] != nums[j]){
+  //       count = count + 1;
+  //     }
+
+  //   }
+  //   output.push(count);
+  // }
+  // return output
+}
+
+smallerNumbersThanCurrent([8, 1, 2, 2, 3]); // [4,0,1,1,3]
+smallerNumbersThanCurrent([6, 5, 4, 8]); // [2,1,0,3]
+smallerNumbersThanCurrent([7, 7, 7, 7]); // [0,0,0,0]
 
 // Two Pointers problems ===============================
 
