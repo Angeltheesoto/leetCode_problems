@@ -182,26 +182,30 @@ function smallerNumbersThanCurrent(nums) {
     output.push(count);
   }
   console.log(output);
-
-  // let output = []
-  // for(let i = 0; i < nums.length; i++){
-  //   let count = 0;
-  //   for(let j = 0; j < nums.length; j++){
-  //     if(nums[i] > nums[j] && nums[i] != nums[j]){
-  //       count = count + 1;
-  //     }
-
-  //   }
-  //   output.push(count);
-  // }
-  // return output
 }
 
-smallerNumbersThanCurrent([8, 1, 2, 2, 3]); // [4,0,1,1,3]
-smallerNumbersThanCurrent([6, 5, 4, 8]); // [2,1,0,3]
-smallerNumbersThanCurrent([7, 7, 7, 7]); // [0,0,0,0]
+// smallerNumbersThanCurrent([8, 1, 2, 2, 3]); // [4,0,1,1,3]
+// smallerNumbersThanCurrent([6, 5, 4, 8]); // [2,1,0,3]
+// smallerNumbersThanCurrent([7, 7, 7, 7]); // [0,0,0,0]
 
 // Two Pointers problems ===============================
+// tag=two pointers, difficulty=easy, acceptence=high
+
+// #125 - Valid Palindrome - Two Pointers | String
+function isPalidrome(s) {
+  s = s.replace(/\s/g, "");
+  let string = s.replace(/[^a-zA-Z0-9 ]/g, "").toLowerCase();
+  let reverseString = string.split("").reverse().join("").toLowerCase();
+  if (string !== reverseString) {
+    console.log(false);
+  } else {
+    console.log(true);
+  }
+}
+// isPalidrome("A man, a plan, a canal: Panama"); // true
+// isPalidrome("race a car"); // false
+// isPalidrome(" "); // true
+// isPalidrome("0P"); // false
 
 // Sliding Window problems ===============================
 
