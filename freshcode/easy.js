@@ -237,7 +237,25 @@ function arithmeticTriplets(nums, diff) {
 // arithmeticTriplets([0, 1, 4, 6, 7, 10], 3); // 2
 // arithmeticTriplets([4, 5, 6, 7, 8, 9], 2); // 2
 
-// #557 - Reverse Words in a String III - Two Pointers |
+// #557 - Reverse Words in a String III - Two Pointers | String
+function reverseWords(s) {
+  s = s.split(" ");
+  // AUTOMATICALLY
+  // let newArr = s.map((e) => e.split("").reverse().join(""));
+  // newArr = newArr.join(" ");
+
+  // MANUALLY
+  // console.log(s);
+  let sLength = s.length;
+  for (let i = 0; i < sLength; i++) {
+    const word = s[i].split("");
+    word.reverse();
+    s[i] = word.join("");
+  }
+  console.log(s);
+}
+reverseWords("Let's take LeetCode contest");
+reverseWords("God Ding");
 
 // Sliding Window problems ===============================
 
