@@ -291,6 +291,30 @@ function flipAndInvertImage(image) {
 
 // #2108 - Find First Palindromic String in Array - Two Pointers | Array | String
 
+function firstPalindrome(words) {
+  // console.log(words);
+  // create a variable to store the firstPalindrome
+  // loop through the array going to each iteem.
+  // - Then check if the item is a palindrome, if it is then add it to a variable
+  // - if not, then move onto the next item until you reach the end of the array.
+  let palindrome = [];
+  for (let i = 0; i < words.length; i++) {
+    let reverseWords = words[i].split("").reverse().join("");
+    if (reverseWords == words[i]) {
+      palindrome.push(words[i]);
+    }
+  }
+  palindrome = palindrome[0];
+  if (palindrome === undefined) {
+    palindrome = "";
+  }
+  console.log(palindrome);
+}
+
+// firstPalindrome(["abc", "car", "ada", "racecar", "cool"]); //  "ada"
+// firstPalindrome(["notapalindrome", "racecar"]); // "racecar"
+// firstPalindrome(["def", "ghi"]); // ""
+
 // Sliding Window problems ===============================
 
 // Stack problems ===============================
