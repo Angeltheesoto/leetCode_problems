@@ -254,8 +254,42 @@ function reverseWords(s) {
   }
   console.log(s);
 }
-reverseWords("Let's take LeetCode contest");
-reverseWords("God Ding");
+// reverseWords("Let's take LeetCode contest");
+// reverseWords("God Ding");
+
+// #832 - Flipping an Image - Two Pointers | Array | Matrix | Simulation
+function flipAndInvertImage(image) {
+  console.log(image);
+  let reverseImage = image.map((e) => e.reverse());
+  for (let i = 0; i < reverseImage.length; i++) {
+    // console.log(reverseImage[i]);
+    let container = reverseImage[i];
+    for (let j = 0; j < container.length; j++) {
+      // console.log(container[j]);
+      if (container[j] == 1) {
+        container[j] = 0;
+      } else {
+        container[j] = 1;
+      }
+    }
+  }
+  console.log(reverseImage);
+}
+// flipAndInvertImage([
+//   [1, 1, 0],
+//   [1, 0, 1],
+//   [0, 0, 0],
+// ]); // [[1,0,0],[0,1,0],[1,1,1]]
+// flipAndInvertImage([
+//   [
+//     [1, 1, 0, 0],
+//     [1, 0, 0, 1],
+//     [0, 1, 1, 1],
+//     [1, 0, 1, 0],
+//   ],
+// ]); // [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
+
+// #2108 - Find First Palindromic String in Array - Two Pointers | Array | String
 
 // Sliding Window problems ===============================
 
