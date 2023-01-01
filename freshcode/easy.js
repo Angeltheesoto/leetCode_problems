@@ -315,6 +315,68 @@ function firstPalindrome(words) {
 // firstPalindrome(["notapalindrome", "racecar"]); // "racecar"
 // firstPalindrome(["def", "ghi"]); // ""
 
+// #2000 - Reverse Prefix of Word - Two Pointers | String
+
+function reversePrefix(word, ch) {
+  let chIndex = word.indexOf(ch);
+  // console.log(`Find index of ch: ${chIndex}`);
+  if (chIndex < 0) return console.log(word);
+  let result = "";
+  for (let i = chIndex; i >= 0; i--) {
+    // console.log(`Loop 1 steps: ${result}`);
+    result += word[i];
+  }
+  for (let j = chIndex + 1; j < word.length; j++) {
+    // console.log(`Loop 2 steps: ${result}`);
+    result += word[j];
+  }
+  console.log(result);
+}
+// reversePrefix("abcdefd", "d"); // "dcbaefd"
+// reversePrefix("xyxzxe", "z"); // "zxyxxe"
+// reversePrefix("abcd", "z"); // "abcd"
+
+// #942 - DI String Match - Two Pointers | Array | String | Greedy
+
+function diStringMatch(s) {
+  /*
+  1. Create Low pointer.
+  2. Create high pointer
+  3. create size variable
+  4. create output array.
+  5. loop through S.
+    a. Condition if current character is "I".
+      i. Push in low pointer.
+      ii. Increment low pointer.
+    b. Else
+      i. Push in high pointer.
+      ii. Decrement high pointer.
+  6. Return Output.
+  */
+
+  let low = 0;
+  let high = s.length;
+  let size = s.length + 1;
+  let output = new Array(size);
+  // console.log(output);
+  for (let i = 0; i < size; i++) {
+    if (s[i] === "I") {
+      console.log(`Output steps if 'I': ${output}`);
+      output[i] = low;
+      low++;
+    } else {
+      console.log(`Output steps if 'D': ${output}`);
+      output[i] = high;
+      high--;
+    }
+  }
+  console.log(output);
+}
+
+// diStringMatch("IDID"); // [0,4,1,3,2]
+// diStringMatch("III"); // [0,1,2,3]
+// diStringMatch("DDI"); // [3,2,0,1]
+
 // Sliding Window problems ===============================
 
 // Stack problems ===============================
