@@ -377,6 +377,46 @@ function diStringMatch(s) {
 // diStringMatch("III"); // [0,1,2,3]
 // diStringMatch("DDI"); // [3,2,0,1]
 
+// #1768 - Merge Strings Alternately - Two Pointers | String
+function mergeAlternately(word1, word2) {
+  console.log(word1, word2);
+  // let newWord1;
+  // let newWord2;
+  // let output = [];
+  // word1 = word1.split("").join(" ");
+  // word2 = word2.split("").join(" ");
+  // word2 = word2.split("");
+  // newWord1 = word1;
+  // newWord2 = " ".repeat(1) + word2;
+  // newWord1 = newWord1.split("");
+  // newWord2 = newWord2.split("");
+  // for (let i = 0; i < newWord1.length; i++) {
+  //   output.push(newWord1[i]);
+  //   output.push(newWord2[i]);
+  // }
+
+  let i = 0;
+  let j = 0;
+  let combinedLength = word1.length + word2.length - 1;
+  let result = [];
+
+  while (combinedLength > 0) {
+    if (i !== word1.length) {
+      result.push(word1[i]);
+      i++;
+    }
+    if (j !== word2.length) {
+      result.push(word2[j]);
+      j++;
+    }
+    combinedLength--;
+  }
+  console.log(result.join(""));
+}
+// mergeAlternately("abc", "pqr"); // "apbqcr"
+// mergeAlternately("ab", "pqrs"); // "apbqrs"
+// mergeAlternately("abcd", "pq"); // "apbqcd"
+
 // Sliding Window problems ===============================
 
 // Stack problems ===============================
