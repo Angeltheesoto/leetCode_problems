@@ -380,20 +380,6 @@ function diStringMatch(s) {
 // #1768 - Merge Strings Alternately - Two Pointers | String
 function mergeAlternately(word1, word2) {
   console.log(word1, word2);
-  // let newWord1;
-  // let newWord2;
-  // let output = [];
-  // word1 = word1.split("").join(" ");
-  // word2 = word2.split("").join(" ");
-  // word2 = word2.split("");
-  // newWord1 = word1;
-  // newWord2 = " ".repeat(1) + word2;
-  // newWord1 = newWord1.split("");
-  // newWord2 = newWord2.split("");
-  // for (let i = 0; i < newWord1.length; i++) {
-  //   output.push(newWord1[i]);
-  //   output.push(newWord2[i]);
-  // }
 
   let i = 0;
   let j = 0;
@@ -416,6 +402,15 @@ function mergeAlternately(word1, word2) {
 // mergeAlternately("abc", "pqr"); // "apbqcr"
 // mergeAlternately("ab", "pqrs"); // "apbqrs"
 // mergeAlternately("abcd", "pq"); // "apbqcd"
+
+// #344 - Reverse String - Two Pointers | String
+function reverseString(s) {
+  s = s.reverse();
+  console.log(s);
+}
+
+// reverseString(["h", "e", "l", "l", "o"]);
+// reverseString(["H", "a", "n", "n", "a", "h"]);
 
 // Sliding Window problems ===============================
 
