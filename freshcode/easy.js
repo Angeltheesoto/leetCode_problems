@@ -412,6 +412,44 @@ function reverseString(s) {
 // reverseString(["h", "e", "l", "l", "o"]);
 // reverseString(["H", "a", "n", "n", "a", "h"]);
 
+// #1332 - Remove Palindromic Subsequences - Two Pointers | String
+function removePalindromeSub(s) {
+  // console.log(s);
+  /*
+  prompt: return the min num of steps to make the given string empty.
+    1. if s is a palindrome return 1
+    2. create a store value that equals 0, to record the amount of steps taken to make the string empty.
+    3. loop through the string to find if the string has a palindrome
+      a. if it does, remove the palindrome and increment store by 1
+      b. else if it does not, remove last index and increment store by 1.
+  */
+
+  let reverseString = s.split("").reverse().join("");
+  if (!s) {
+    console.log(0);
+  }
+  // console.log(s === reverseString ? 1 : 2);
+  const isPalidrome = (s) => {
+    let i = 0;
+    let j = s.length - 1;
+    const arr = s.split("");
+    while (i < j) {
+      if (arr[i] !== arr[j]) {
+        return false;
+      }
+      j--;
+      i++;
+    }
+    return true;
+  };
+  console.log(isPalidrome(s) ? 1 : 2);
+}
+
+removePalindromeSub("");
+removePalindromeSub("ababa"); // 1
+removePalindromeSub("abb"); // 2
+removePalindromeSub("baabb"); // 2
+
 // Sliding Window problems ===============================
 
 // Stack problems ===============================
