@@ -190,156 +190,156 @@
   // smallerNumbersThanCurrent([7, 7, 7, 7]); // [0,0,0,0]
 }
 // Two Pointers problems ===============================
-
-// #125 - Valid Palindrome - Two Pointers | String
-function isPalidrome(s) {
-  s = s.replace(/\s/g, "");
-  let string = s.replace(/[^a-zA-Z0-9 ]/g, "").toLowerCase();
-  let reverseString = string.split("").reverse().join("").toLowerCase();
-  if (string !== reverseString) {
-    console.log(false);
-  } else {
-    console.log(true);
+{
+  // #125 - Valid Palindrome - Two Pointers | String
+  function isPalidrome(s) {
+    s = s.replace(/\s/g, "");
+    let string = s.replace(/[^a-zA-Z0-9 ]/g, "").toLowerCase();
+    let reverseString = string.split("").reverse().join("").toLowerCase();
+    if (string !== reverseString) {
+      console.log(false);
+    } else {
+      console.log(true);
+    }
   }
-}
-// isPalidrome("A man, a plan, a canal: Panama"); // true
-// isPalidrome("race a car"); // false
-// isPalidrome(" "); // true
-// isPalidrome("0P"); // false
+  // isPalidrome("A man, a plan, a canal: Panama"); // true
+  // isPalidrome("race a car"); // false
+  // isPalidrome(" "); // true
+  // isPalidrome("0P"); // false
 
-// #2367 - Number of Arithmetic Triplets - Two Pointers | Hash Table | Array | Enumeration
+  // #2367 - Number of Arithmetic Triplets - Two Pointers | Hash Table | Array | Enumeration
 
-function arithmeticTriplets(nums, diff) {
-  // console.log(nums, diff);
-  /*
+  function arithmeticTriplets(nums, diff) {
+    // console.log(nums, diff);
+    /*
   I. Create a newArray, and store the last index of nums in it.
   II. Take the last num in nums and subtract it with each item in the array going backwards.
   III. If one of the nums in nums[i - 1] - nums[i] = diff, change last index to nums[i] and add it to the newArray. Continue the process untill the index reaches 0.
   */
 
-  let count = 0;
-  const reverseArray = nums.reverse();
-  for (let i = 0; i < reverseArray.length; i++) {
-    for (let j = 0; j < reverseArray.length; j++) {
-      for (let k = 0; k < reverseArray.length; k++) {
-        if (
-          reverseArray[i] - nums[j] == diff &&
-          reverseArray[j] - reverseArray[k] == diff
-        ) {
-          count += 1;
+    let count = 0;
+    const reverseArray = nums.reverse();
+    for (let i = 0; i < reverseArray.length; i++) {
+      for (let j = 0; j < reverseArray.length; j++) {
+        for (let k = 0; k < reverseArray.length; k++) {
+          if (
+            reverseArray[i] - nums[j] == diff &&
+            reverseArray[j] - reverseArray[k] == diff
+          ) {
+            count += 1;
+          }
         }
       }
     }
+    console.log(reverseArray);
+    console.log(count);
   }
-  console.log(reverseArray);
-  console.log(count);
-}
-// arithmeticTriplets([0, 1, 4, 6, 7, 10], 3); // 2
-// arithmeticTriplets([4, 5, 6, 7, 8, 9], 2); // 2
+  // arithmeticTriplets([0, 1, 4, 6, 7, 10], 3); // 2
+  // arithmeticTriplets([4, 5, 6, 7, 8, 9], 2); // 2
 
-// #557 - Reverse Words in a String III - Two Pointers | String
-function reverseWords(s) {
-  s = s.split(" ");
-  // AUTOMATICALLY
-  // let newArr = s.map((e) => e.split("").reverse().join(""));
-  // newArr = newArr.join(" ");
+  // #557 - Reverse Words in a String III - Two Pointers | String
+  function reverseWords(s) {
+    s = s.split(" ");
+    // AUTOMATICALLY
+    // let newArr = s.map((e) => e.split("").reverse().join(""));
+    // newArr = newArr.join(" ");
 
-  // MANUALLY
-  // console.log(s);
-  let sLength = s.length;
-  for (let i = 0; i < sLength; i++) {
-    const word = s[i].split("");
-    word.reverse();
-    s[i] = word.join("");
+    // MANUALLY
+    // console.log(s);
+    let sLength = s.length;
+    for (let i = 0; i < sLength; i++) {
+      const word = s[i].split("");
+      word.reverse();
+      s[i] = word.join("");
+    }
+    console.log(s);
   }
-  console.log(s);
-}
-// reverseWords("Let's take LeetCode contest");
-// reverseWords("God Ding");
+  // reverseWords("Let's take LeetCode contest");
+  // reverseWords("God Ding");
 
-// #832 - Flipping an Image - Two Pointers | Array | Matrix | Simulation
-function flipAndInvertImage(image) {
-  console.log(image);
-  let reverseImage = image.map((e) => e.reverse());
-  for (let i = 0; i < reverseImage.length; i++) {
-    // console.log(reverseImage[i]);
-    let container = reverseImage[i];
-    for (let j = 0; j < container.length; j++) {
-      // console.log(container[j]);
-      if (container[j] == 1) {
-        container[j] = 0;
-      } else {
-        container[j] = 1;
+  // #832 - Flipping an Image - Two Pointers | Array | Matrix | Simulation
+  function flipAndInvertImage(image) {
+    console.log(image);
+    let reverseImage = image.map((e) => e.reverse());
+    for (let i = 0; i < reverseImage.length; i++) {
+      // console.log(reverseImage[i]);
+      let container = reverseImage[i];
+      for (let j = 0; j < container.length; j++) {
+        // console.log(container[j]);
+        if (container[j] == 1) {
+          container[j] = 0;
+        } else {
+          container[j] = 1;
+        }
       }
     }
+    console.log(reverseImage);
   }
-  console.log(reverseImage);
-}
-// flipAndInvertImage([
-//   [1, 1, 0],
-//   [1, 0, 1],
-//   [0, 0, 0],
-// ]); // [[1,0,0],[0,1,0],[1,1,1]]
-// flipAndInvertImage([
-//   [
-//     [1, 1, 0, 0],
-//     [1, 0, 0, 1],
-//     [0, 1, 1, 1],
-//     [1, 0, 1, 0],
-//   ],
-// ]); // [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
+  // flipAndInvertImage([
+  //   [1, 1, 0],
+  //   [1, 0, 1],
+  //   [0, 0, 0],
+  // ]); // [[1,0,0],[0,1,0],[1,1,1]]
+  // flipAndInvertImage([
+  //   [
+  //     [1, 1, 0, 0],
+  //     [1, 0, 0, 1],
+  //     [0, 1, 1, 1],
+  //     [1, 0, 1, 0],
+  //   ],
+  // ]); // [[1,1,0,0],[0,1,1,0],[0,0,0,1],[1,0,1,0]]
 
-// #2108 - Find First Palindromic String in Array - Two Pointers | Array | String
+  // #2108 - Find First Palindromic String in Array - Two Pointers | Array | String
 
-function firstPalindrome(words) {
-  // console.log(words);
-  // create a variable to store the firstPalindrome
-  // loop through the array going to each iteem.
-  // - Then check if the item is a palindrome, if it is then add it to a variable
-  // - if not, then move onto the next item until you reach the end of the array.
-  let palindrome = [];
-  for (let i = 0; i < words.length; i++) {
-    let reverseWords = words[i].split("").reverse().join("");
-    if (reverseWords == words[i]) {
-      palindrome.push(words[i]);
+  function firstPalindrome(words) {
+    // console.log(words);
+    // create a variable to store the firstPalindrome
+    // loop through the array going to each iteem.
+    // - Then check if the item is a palindrome, if it is then add it to a variable
+    // - if not, then move onto the next item until you reach the end of the array.
+    let palindrome = [];
+    for (let i = 0; i < words.length; i++) {
+      let reverseWords = words[i].split("").reverse().join("");
+      if (reverseWords == words[i]) {
+        palindrome.push(words[i]);
+      }
     }
+    palindrome = palindrome[0];
+    if (palindrome === undefined) {
+      palindrome = "";
+    }
+    console.log(palindrome);
   }
-  palindrome = palindrome[0];
-  if (palindrome === undefined) {
-    palindrome = "";
+
+  // firstPalindrome(["abc", "car", "ada", "racecar", "cool"]); //  "ada"
+  // firstPalindrome(["notapalindrome", "racecar"]); // "racecar"
+  // firstPalindrome(["def", "ghi"]); // ""
+
+  // #2000 - Reverse Prefix of Word - Two Pointers | String
+
+  function reversePrefix(word, ch) {
+    let chIndex = word.indexOf(ch);
+    // console.log(`Find index of ch: ${chIndex}`);
+    if (chIndex < 0) return console.log(word);
+    let result = "";
+    for (let i = chIndex; i >= 0; i--) {
+      // console.log(`Loop 1 steps: ${result}`);
+      result += word[i];
+    }
+    for (let j = chIndex + 1; j < word.length; j++) {
+      // console.log(`Loop 2 steps: ${result}`);
+      result += word[j];
+    }
+    console.log(result);
   }
-  console.log(palindrome);
-}
+  // reversePrefix("abcdefd", "d"); // "dcbaefd"
+  // reversePrefix("xyxzxe", "z"); // "zxyxxe"
+  // reversePrefix("abcd", "z"); // "abcd"
 
-// firstPalindrome(["abc", "car", "ada", "racecar", "cool"]); //  "ada"
-// firstPalindrome(["notapalindrome", "racecar"]); // "racecar"
-// firstPalindrome(["def", "ghi"]); // ""
+  // #942 - DI String Match - Two Pointers | Array | String | Greedy
 
-// #2000 - Reverse Prefix of Word - Two Pointers | String
-
-function reversePrefix(word, ch) {
-  let chIndex = word.indexOf(ch);
-  // console.log(`Find index of ch: ${chIndex}`);
-  if (chIndex < 0) return console.log(word);
-  let result = "";
-  for (let i = chIndex; i >= 0; i--) {
-    // console.log(`Loop 1 steps: ${result}`);
-    result += word[i];
-  }
-  for (let j = chIndex + 1; j < word.length; j++) {
-    // console.log(`Loop 2 steps: ${result}`);
-    result += word[j];
-  }
-  console.log(result);
-}
-// reversePrefix("abcdefd", "d"); // "dcbaefd"
-// reversePrefix("xyxzxe", "z"); // "zxyxxe"
-// reversePrefix("abcd", "z"); // "abcd"
-
-// #942 - DI String Match - Two Pointers | Array | String | Greedy
-
-function diStringMatch(s) {
-  /*
+  function diStringMatch(s) {
+    /*
   1. Create Low pointer.
   2. Create high pointer
   3. create size variable
@@ -354,68 +354,68 @@ function diStringMatch(s) {
   6. Return Output.
   */
 
-  let low = 0;
-  let high = s.length;
-  let size = s.length + 1;
-  let output = new Array(size);
-  // console.log(output);
-  for (let i = 0; i < size; i++) {
-    if (s[i] === "I") {
-      console.log(`Output steps if 'I': ${output}`);
-      output[i] = low;
-      low++;
-    } else {
-      console.log(`Output steps if 'D': ${output}`);
-      output[i] = high;
-      high--;
+    let low = 0;
+    let high = s.length;
+    let size = s.length + 1;
+    let output = new Array(size);
+    // console.log(output);
+    for (let i = 0; i < size; i++) {
+      if (s[i] === "I") {
+        console.log(`Output steps if 'I': ${output}`);
+        output[i] = low;
+        low++;
+      } else {
+        console.log(`Output steps if 'D': ${output}`);
+        output[i] = high;
+        high--;
+      }
     }
+    console.log(output);
   }
-  console.log(output);
-}
 
-// diStringMatch("IDID"); // [0,4,1,3,2]
-// diStringMatch("III"); // [0,1,2,3]
-// diStringMatch("DDI"); // [3,2,0,1]
+  // diStringMatch("IDID"); // [0,4,1,3,2]
+  // diStringMatch("III"); // [0,1,2,3]
+  // diStringMatch("DDI"); // [3,2,0,1]
 
-// #1768 - Merge Strings Alternately - Two Pointers | String
-function mergeAlternately(word1, word2) {
-  console.log(word1, word2);
+  // #1768 - Merge Strings Alternately - Two Pointers | String
+  function mergeAlternately(word1, word2) {
+    console.log(word1, word2);
 
-  let i = 0;
-  let j = 0;
-  let combinedLength = word1.length + word2.length - 1;
-  let result = [];
+    let i = 0;
+    let j = 0;
+    let combinedLength = word1.length + word2.length - 1;
+    let result = [];
 
-  while (combinedLength > 0) {
-    if (i !== word1.length) {
-      result.push(word1[i]);
-      i++;
+    while (combinedLength > 0) {
+      if (i !== word1.length) {
+        result.push(word1[i]);
+        i++;
+      }
+      if (j !== word2.length) {
+        result.push(word2[j]);
+        j++;
+      }
+      combinedLength--;
     }
-    if (j !== word2.length) {
-      result.push(word2[j]);
-      j++;
-    }
-    combinedLength--;
+    console.log(result.join(""));
   }
-  console.log(result.join(""));
-}
-// mergeAlternately("abc", "pqr"); // "apbqcr"
-// mergeAlternately("ab", "pqrs"); // "apbqrs"
-// mergeAlternately("abcd", "pq"); // "apbqcd"
+  // mergeAlternately("abc", "pqr"); // "apbqcr"
+  // mergeAlternately("ab", "pqrs"); // "apbqrs"
+  // mergeAlternately("abcd", "pq"); // "apbqcd"
 
-// #344 - Reverse String - Two Pointers | String
-function reverseString(s) {
-  s = s.reverse();
-  console.log(s);
-}
+  // #344 - Reverse String - Two Pointers | String
+  function reverseString(s) {
+    s = s.reverse();
+    console.log(s);
+  }
 
-// reverseString(["h", "e", "l", "l", "o"]);
-// reverseString(["H", "a", "n", "n", "a", "h"]);
+  // reverseString(["h", "e", "l", "l", "o"]);
+  // reverseString(["H", "a", "n", "n", "a", "h"]);
 
-// #1332 - Remove Palindromic Subsequences - Two Pointers | String
-function removePalindromeSub(s) {
-  // console.log(s);
-  /*
+  // #1332 - Remove Palindromic Subsequences - Two Pointers | String
+  function removePalindromeSub(s) {
+    // console.log(s);
+    /*
   prompt: return the min num of steps to make the given string empty.
     1. if s is a palindrome return 1
     2. create a store value that equals 0, to record the amount of steps taken to make the string empty.
@@ -424,33 +424,85 @@ function removePalindromeSub(s) {
       b. else if it does not, remove last index and increment store by 1.
   */
 
-  let reverseString = s.split("").reverse().join("");
-  if (!s) {
-    console.log(0);
-  }
-  // console.log(s === reverseString ? 1 : 2);
-  const isPalidrome = (s) => {
-    let i = 0;
-    let j = s.length - 1;
-    const arr = s.split("");
-    while (i < j) {
-      if (arr[i] !== arr[j]) {
-        return false;
-      }
-      j--;
-      i++;
+    let reverseString = s.split("").reverse().join("");
+    if (!s) {
+      console.log(0);
     }
-    return true;
-  };
-  console.log(isPalidrome(s) ? 1 : 2);
+    const isPalidrome = (s) => {
+      let i = 0;
+      let j = s.length - 1;
+      const arr = s.split("");
+      while (i < j) {
+        if (arr[i] !== arr[j]) {
+          return false;
+        }
+        j--;
+        i++;
+      }
+      return true;
+    };
+    console.log(isPalidrome(s) ? 1 : 2);
+  }
+  // removePalindromeSub("");
+  // removePalindromeSub("ababa"); // 1
+  // removePalindromeSub("abb"); // 2
+  // removePalindromeSub("baabb"); // 2
 }
 
-removePalindromeSub("");
-removePalindromeSub("ababa"); // 1
-removePalindromeSub("abb"); // 2
-removePalindromeSub("baabb"); // 2
-
 // Sliding Window problems ===============================
+// Example:
+{
+  function maxSubArraySum(nums, size) {
+    let currSum = 0;
+    let maxSumSeen = -Infinity;
+
+    for (let i = 0; i < nums.length; i++) {
+      currSum += nums[i];
+      if (i >= size - 1) {
+        maxSumSeen = Math.max(currSum, maxSumSeen);
+        currSum -= nums[i - (size - 1)];
+      }
+    }
+    console.log(maxSumSeen);
+  }
+
+  const arr1 = [1, 2, 3, 5, 4, 8, 6, 2];
+  // maxSubArraySum(arr1, 3);
+}
+
+{
+  // #121 - Best Time to Buy and Sell Stock - Sliding Window | Array | Dynamic Programming
+  function maxProfit(prices) {
+    // console.log(prices);
+    /*
+      1. Create a variable to store the curr value, and a variable to store the maxProfit.
+      2. Create a for loop to loop through prices array.
+      3. Create a second for loop to loop through all other items.
+        a. if arr[i]
+          i. profit = arr2[j] - arr[i]
+          i. maxProfit = Math.max(curr, maxProfit)
+      4. return maxProfit
+    */
+
+    let buy = prices[0];
+    let profit = 0;
+
+    for (let i = 0; i < prices.length; i++) {
+      if (buy > prices[i]) {
+        buy = prices[i];
+        prices[i] = 0;
+      } else {
+        console.log(`Buy: ${buy}, Profit: ${profit} `);
+        profit = Math.max(prices[i] - buy, profit);
+      }
+    }
+    console.log(profit);
+  }
+  // maxProfit([7, 1, 5, 3, 6, 4]); // 5
+  // maxProfit([7, 6, 4, 3, 1]); // 0
+
+  // #1876 - Substrings of Size Three with Distinct Characters - Sliding Window | Hash Table | String | Counting
+}
 
 // Stack problems ===============================
 
