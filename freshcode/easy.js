@@ -502,6 +502,132 @@
   // maxProfit([7, 6, 4, 3, 1]); // 0
 
   // #1876 - Substrings of Size Three with Distinct Characters - Sliding Window | Hash Table | String | Counting
+  function countGoodSubstrings(s) {
+    // console.log(s);
+    /*
+    1. create variables:
+      a. for turning s into an array to be traversed.
+      b. for counter to hold the amount of good substrings.
+    2. create a forLoop for s.length
+      a. if (i >= 2), console.log(s[i])
+      b. else ...
+    */
+    let arr = s.split("");
+    let curr;
+    let count = 0;
+    // console.log(arr);
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i + 2] != undefined) {
+        curr = [arr[i], arr[i + 1], arr[i + 2]];
+        if (
+          arr[i] != arr[i + 1] &&
+          arr[i] != arr[i + 2] &&
+          arr[i + 1] != arr[i + 2]
+        ) {
+          count += 1;
+        }
+      }
+    }
+    console.log(count);
+  }
+
+  // countGoodSubstrings("xyzzaz"); // 1
+  // countGoodSubstrings(" "); // 0
+  // countGoodSubstrings("aababcabc"); // 4
+
+  // #1763 - Longest Nice Substring - Sliding Window | Hash Table | String ...
+  function longestNiceSubstring(s) {
+    s = s.split(""); // turns string to array
+    const stringLength = s.length; // length of string
+    let max = ""; // return value
+
+    for (let i = 0; i < stringLength - 1; i++) {
+      // for loop
+      let substr = [s[i]]; // loop through all items in string to make this.
+
+      for (let j = i + 1; j < stringLength; j++) {
+        // second for loop
+        substr.push(s[j]);
+        let isNice = true;
+
+        for (const c of substr) {
+          // similar to .map
+          if (
+            !substr.includes(c.toLowerCase()) ||
+            !substr.includes(c.toUpperCase())
+          ) {
+            isNice = false;
+          }
+        }
+        if (isNice && substr.join("").length > max.length) {
+          max = substr.join("");
+        }
+      }
+    }
+    console.log(max);
+  }
+  // longestNiceSubstring("YazaAay"); // "aAa"
+  // longestNiceSubstring("Bb"); // "Bb"
+  // longestNiceSubstring("c"); //
+
+  // #2379 - Minimum Recolors to Get K Consecutive Black Blocks - Sliding Window | String
+  function minimumRecolors(blocks, k) {
+    let temp = "B".repeat(k);
+    if (blocks.indexOf(temp) !== -1) return 0;
+    let count = Number.POSITIVE_INFINITY;
+    for (let i = 0; i <= blocks.length - k; i++) {
+      let tempCount = 0;
+      for (let j = i; j < i + k; j++) {
+        if (blocks[j] === "W") tempCount++;
+      }
+      count = Math.min(tempCount, count);
+    }
+    return count;
+  }
+  // minimumRecolors("WBBWWBBWBW", 7); // 3
+  // minimumRecolors("WBWBBBW", 2); // 0
+
+  // #2269 - Find the K-Beauty of a Number - Sliding Window | String
+  function divisorSubstrings(num, k) {
+    // console.log(num, k);
+    /*
+    1. create variables:
+      a. let count = 0; this will increment the amount of k-beauty.
+    2. create a for loop.
+      a. if num[i] divide num has a remainder of 0. 
+        i. increment count.
+      b. return count
+    */
+    let curr = 0;
+    let count = 0;
+    let nums = Array.from(String(num));
+    for (let i = 0; i < nums.length; i++) {
+      console.log(nums[i]);
+      // if (i >= k - 1 && i != undefined) {
+      //   curr = num[i];
+      //   console.log(curr);
+      // }
+    }
+    // console.log(count);
+  }
+  // divisorSubstrings(240, 2); // 2
+  // divisorSubstrings(430043, 2); // 2
+
+  function toWindows(inputArray, size) {
+    return inputArray.reduce((acc, _, index, arr) => {
+      if (index + size > arr.length) {
+        // we've reached the maximum number of windows, so don't add any more
+        return acc;
+      }
+      // add a new window of [currentItem, maxWindowSizeItem)
+      return acc.concat(
+        // wrap in extra array, otherwise .concat flattens it
+        [arr.slice(index, index + size)]
+      );
+    }, []);
+  }
+  const input = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  console.log(toWindows(input, 3));
 }
 
 // Stack problems ===============================
