@@ -1,7 +1,6 @@
 # ARRAY PRACTICE
 
 # Day 3 - Array DataStructure --------------
-# https://github.com/codebasics/data-structures-algorithms-python/blob/master/data_structures/2_Arrays/2_arrays_exercise.md
 
 # SECTION - 1. Let us say your expense for every month are listed below, ...
 expenses = {'January': 2200, 'February': 2350, 'March': 2000, 'April': 2130, 'May': 2190}
