@@ -144,6 +144,16 @@ class LinkedList:
       itr = itr.next
       count += 1
 
+  def reverseList(self):
+    prev = None
+    curr = self.head
+    while curr:
+      next = curr.next
+      curr.next = prev
+      prev = curr
+      curr = next
+    self.head = prev
+
 # This is a simple loop to go through each element in the linked list.
 # itr = self.head
 # while itr:
@@ -152,26 +162,10 @@ class LinkedList:
 # In Short: It Allows You to Execute Code When the File Runs as a Script, but Not When It’s Imported as a Module
 if __name__ == '__main__':
   ll = LinkedList()
-  # ll.insert_at_begining(5)
-  # ll.insert_at_begining(89)
-  # ll.insert_at_end(79)
-  # ll.insert_at_end(1)
-
-  ll.insert_values(["banana", "mango", "grapes", "orange"])
+  ll.insert_values([1, 2, 3, 4])
+  ll.print()
+  # ll.reverseList()
+  ll.recursiveReverseList()
   ll.print()
 
-  # print("length: ", ll.get_length())
-
-  # ll.remove_at(2)
-  # ll.print()
-
-  # ll.insert_at(3, 'figs')
-
-  ll.insert_after_value("mango", "apple")
-  # ll.insert_after_value("strawberry", "apple")
-
-  ll.print()
-  ll.remove_by_value("orange")
-
-  ll.print()
 
