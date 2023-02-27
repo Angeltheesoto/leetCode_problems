@@ -116,8 +116,44 @@ def topKFrequent(nums, k):
 # print(topKFrequent([2, 3, 3, 3, 4, 4, 5, 5, 5], 2))
 
 # 238 - Product of Array Except Self - Array | Prefix Sum
+def productExceptSelf(nums):
+  # answer = [1] # right
+  # for i in range(len(nums)-1, 0, -1):
+  #   answer.append(answer[-1] * nums[i])
+  # answer = answer[::-1]
+  # left = 1
+  # for i in range(len(nums)):
+  #   answer[i] = answer[i]*left
+  #   left *= nums[i]
+  # return answer
+  res = [1] * (len(nums))
+  prefix = 1
+  for i in range(len(nums)):
+    res[i] = prefix
+    prefix *= nums[i]
+  postfix = 1
+  for i in range(len(nums) - 1, -1 , -1):
+    res[i] *= postfix
+# print(productExceptSelf([1,2,3,4])) # [24,12,8,6]
+# print(productExceptSelf([-1,1,0,-3,3])) # [0,0,9,0,0]
+# print(productExceptSelf([0, 0])) # [0,0]
+# print(productExceptSelf([1, 0])) # [0, 1]
 
-
+# 128 - Longest Consecutive Sequence - 
+def longestConsecutive(nums):
+  numSet = set(nums)
+  longest = 0
+  for n in nums:
+    # check if its the start of a sequence
+    if (n-1) not in numSet: # if there is no left neighbor in numSet then its the start of a sequence.
+      next_num = 0
+      while (n + next_num) in numSet:
+        next_num += 1 # increment count for every element that continues the sequence.
+      longest = max(next_num, longest)
+  return longest
+# [1, 2, 3, 4, 100, 200]
+# print(longestConsecutive([100,4,200,1,3,2])) # 4
+# print(longestConsecutive([0,3,7,2,5,8,4,6,0,1])) # 9
 # ?Array / HashTable problems ===============================
 
 
