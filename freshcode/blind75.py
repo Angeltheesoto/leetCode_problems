@@ -195,6 +195,58 @@ class Solution_two(object):
 #   print(soltwo.isPalindrome("A man, a plan, a canal: Panama"))
 #   print(soltwo.isPalindrome("race a car"))
 #   print(soltwo.isPalindrome(" "))
+
+# 15 - 3sum - Array | Two Pointers | Sorting
+def threeSum(nums):
+  res = []    # [ 0,  1,  2, 3, 4, 5] Index
+  nums.sort() # [-4, -1, -1, 0, 1, 2] Values
+  for i, a in enumerate(nums):
+      if a > 0:
+          break
+      if i > 0 and a == nums[i - 1]:
+          continue # skips to the next value if its the same as prev
+      l, r = i + 1, len(nums) - 1
+      while l < r:
+          threeSum = a + nums[l] + nums[r]
+          if threeSum > 0:
+              r -= 1
+          elif threeSum < 0:
+              l += 1
+          else:
+              res.append([a, nums[l], nums[r]])
+              l += 1
+              r -= 1
+              while nums[l] == nums[l - 1] and l < r:
+                  l += 1 # if the next item is the same then continue
+  return res
+# print(threeSum([-1,0,1,2,-1,-4])) # [[-1,-1,2],[-1,0,1]]
+# print(threeSum([0,1,1]))
+# print(threeSum([0,0,0]))
+
+# 11 - Container With Most Water - 
+def maxArea(height):
+  a = 0
+  b = len(height)-1
+  heighest_water_amount = 0
+  while a < b:
+    distance_between_pointers = b - a
+    if height[a] < height[b]:
+      heighest_water_amount = max(height[a] * distance_between_pointers, heighest_water_amount)
+      a += 1
+    elif height[b] < height[a]:
+      heighest_water_amount = max(height[b] * distance_between_pointers, heighest_water_amount)
+      b -= 1
+    else:
+      if height[a] == height[b]:
+        if height[a+1] > height[b-1]:
+          heighest_water_amount = max(height[a] * distance_between_pointers, heighest_water_amount)
+          a += 1
+        else:
+          heighest_water_amount = max(height[a] * distance_between_pointers, heighest_water_amount)
+          b -= 1
+  return int(heighest_water_amount)
+# print(maxArea([1,8,6,2,5,4,8,3,7])) # 49
+# print(maxArea([1,1])) # 1
 # ?Two pointers =============================================
 
 
@@ -224,6 +276,46 @@ def maxProfit(prices):
 # maxProfit([7,1,5,3,6,4])
 # maxProfit([7,6,4,3,1])
 # maxProfit([1,2,3,4,5])
+
+# 3 - longest substring without repeating characters - 
+def lengthOfLongestSubstring(s):
+  # 1. we create a dictionary to store all the substrings with a value to count how many times we have seen it.
+  # 2. create two pointers to keep track of the substrings. [a = 0], [b = 0]
+  # 3. while b != len(s)-1
+  #   a. b++
+  #   b. if the pointer b is the same as any previous characters:
+  #       I. if dictionary[substring = pointer[a] to pointer[b]]:
+  #         i. dictionary[substring = pointer[a] to pointer[b]] += 1
+  #         i. a = b
+  #       I. else: does not exist in dictionary
+  #         i. dictionary[substring = pointer[a] to pointer[b]] = 1
+  #         i. a = b
+  # dic = {}
+  # a, b = 0, 0
+  # longest = 1
+  # while b is not len(s):
+  #   if s[b] in dic:
+  #     a = max(a, dic[s[b]]+1)
+  #   longest = max(longest, b - a + 1)
+  #   dic[s[b]] = b
+  #   b += 1
+    # print(a, b, longest)
+  # return longest
+
+  charSet = set()
+  l = 0
+  res = 0
+  for r in range(len(s)):
+    while s[r] in charSet:
+      charSet.remove(s[l])
+      l += 1
+    charSet.add(s[r])
+    res = max(res, r - l + 1)
+  return res
+# print(lengthOfLongestSubstring("abcabcbb")) # 3
+# print(lengthOfLongestSubstring("bbbbb")) # 1
+# print(lengthOfLongestSubstring("pwwkew")) # 3
+
 # ?Sliding Window =======================================
 
 
