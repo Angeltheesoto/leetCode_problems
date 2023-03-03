@@ -441,14 +441,11 @@ def search(nums, target):
       else:
         low = mid + 1
   return - 1
-
-print(search([4,5,6,7,0,1,2], 0)) # 4
-print(search([4,5,6,7,0,1,2], 3)) # -1
-print(search([1], 0)) # -1
-print(search([1, 3, 5], 3)) # 1
-print(search([4,5,6,7,0,1,2], 5)) # 1
-
-
+# print(search([4,5,6,7,0,1,2], 0)) # 4
+# print(search([4,5,6,7,0,1,2], 3)) # -1
+# print(search([1], 0)) # -1
+# print(search([1, 3, 5], 3)) # 1
+# print(search([4,5,6,7,0,1,2], 5)) # 1
 # ?Binary Search =======================================
 
 # ?Linked List =======================================
@@ -460,7 +457,6 @@ class LLNode:
 class LinkedList(object):
   def __init__(self):
     self.head = None # Points to the head of the linked list.
-
 # Methods to add element to list.
   def push(self, new_data):
     new_node = LLNode(new_data)
@@ -516,45 +512,82 @@ class LinkedList(object):
     #   temp = temp.next
     # return False
 
+# 143 - Reorder List - Linked List | 
+  def reorderList(self):
+    # every positive position to be the linked list item
+    # every odd item to be last item -n where n increments by 1 each time.
+
+    # find middle
+    slow, fast = self.head, self.head.next
+    while fast and fast.next:
+      slow = slow.next
+      fast = fast.next.next
+    second = slow.next
+    prev = slow.next = None
+    
+    # reverse second half
+    while second:
+      temp = second.next
+      second.next = prev
+      prev = second
+      second = temp
+    
+    # merge two half lists
+    first, second = self.head, prev
+    while second:
+      temp1, temp2 = first.next, second.next
+      first.next = second
+      second.next = temp1
+      first, second = temp1, temp2
+
 # 21 - Merge two Sorted Lists - Linked List | Recursion
 # T O(), M O()
 def mergeTwoLists(list1, list2):
-  dummy = LLNode()
-  tail = dummy
-  # This works locally==>
-  # while True:
-  #   if list1 is None:
-  #     tail.next = list2
-  #     break
-  #   if list2 is None:
-  #     tail.next = list1
-  #     break
-  #   if list1.data <= list2.data:
-  #     tail.next = list1
-  #     list1 = list1.next
-  #   else:
-  #     tail.next = list2
-  #     list2 = list2.next
-  #   tail = tail.next
-  # return dummy.next
-
-  # This works on leetcode==>
-  while list1 and list2:
-    if list1.data < list2.data:
+    dummy = LLNode()
+    tail = dummy
+    # This works locally==>
+    # while True:
+    #   if list1 is None:
+    #     tail.next = list2
+    #     break
+    #   if list2 is None:
+    #     tail.next = list1
+    #     break
+    #   if list1.data <= list2.data:
+    #     tail.next = list1
+    #     list1 = list1.next
+    #   else:
+    #     tail.next = list2
+    #     list2 = list2.next
+    #   tail = tail.next
+    # return dummy.next
+    # This works on leetcode==>
+    while list1 and list2:
+      if list1.data < list2.data:
+        tail.next = list1
+        list1 = list1.next
+      else:
+        tail.next = list2
+        list2 = list2.next
+      tail = tail.next
+    if list1:
       tail.next = list1
-      list1 = list1.next
-    else:
+    elif list2:
       tail.next = list2
-      list2 = list2.next
-    tail = tail.next
-  if list1:
-    tail.next = list1
-  elif list2:
-    tail.next = list2
-  return dummy.next
+    return dummy.next
 
-# if __name__ == '__main__':
-  # Reverse LL
+if __name__ == '__main__':
+  # ?Reorder List
+  ll = LinkedList()
+  ll.push(4)
+  ll.push(3)
+  ll.push(2)
+  ll.push(1)
+  ll.printList()
+  ll.reorderList()
+  ll.printList()
+
+{  # ?Reverse LL
   # ll = LinkedList()
   # ll.push(1)
   # ll.push(2)
@@ -565,7 +598,7 @@ def mergeTwoLists(list1, list2):
   # ll.reverseList() # [5,4,3,2,1]
   # ll.printList()
 
-  # Merge two
+  # ?Merge two
   # l1 = LinkedList()
   # l2 = LinkedList()
   # l1.addToList(1)
@@ -579,7 +612,7 @@ def mergeTwoLists(list1, list2):
   # l1.head = mergeTwoLists(l1.head, l2.head)
   # l1.printList()
 
-  # Linked List Cycle
+  # ?Linked List Cycle
   # ll = LinkedList()
   # ll.addToList(20)
   # ll.addToList(4)
@@ -590,6 +623,7 @@ def mergeTwoLists(list1, list2):
   #   print('Loop Found')
   # else:
   #   print('No Loop')
+  }
 # ?Linked List =======================================
 
 # ?Trees =======================================
@@ -600,12 +634,12 @@ class TreeNode(object):
     self.left = left
     self.right = right
 
-  def PrintTree ( self ) :
-       if self.left :
-           self.left.PrintTree ()
-       print ( self.val, end= ' ' ) ,
-       if self.right :
-           self.right.PrintTree ()
+  def PrintTree ( self ):
+      if self.left :
+          self.left.PrintTree ()
+      print ( self.val, end= ' ' ) ,
+      if self.right :
+          self.right.PrintTree ()
 
 class Tree_Functions(object):
 # 226 - Invert Binary Tree - Tree | Depth-First Search(DFS) | Breadth-First Search(BFS) | Binary Tree
