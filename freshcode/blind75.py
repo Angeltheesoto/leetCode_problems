@@ -540,6 +540,35 @@ class LinkedList(object):
       second.next = temp1
       first, second = temp1, temp2
 
+# 19 - Remove Nth Node From End of List - Linked List | Two Pointers
+  def removeNthFromEnd(self, n):
+    # last = self.head
+    # remove = self.head
+    # count = 0
+    # while last.next:
+    #   last = last.next
+    #   count += 1
+    # if count == 1 and n == 1:
+    #   count = 1
+    # else:
+    #   count = count - n
+    # while count != 0:
+    #   remove = remove.next
+    #   count -= 1
+    # remove.next = remove.next.next
+    dummy = LLNode(0, self.head)
+    left = dummy
+    right = self.head
+    while n > 0 and right:
+      right = right.next
+      n -= 1
+    while right:
+      left = left.next
+      right = right.next
+    left.next = left.next.next
+    return dummy.next
+
+
 # 21 - Merge two Sorted Lists - Linked List | Recursion
 # T O(), M O()
 def mergeTwoLists(list1, list2):
@@ -577,18 +606,19 @@ def mergeTwoLists(list1, list2):
     return dummy.next
 
 if __name__ == '__main__':
-  # ?Reorder List
   ll = LinkedList()
+  # Remove Nth Node From End of List
+  ll.push(5)
   ll.push(4)
   ll.push(3)
   ll.push(2)
   ll.push(1)
   ll.printList()
-  ll.reorderList()
+  ll.removeNthFromEnd(3)
   ll.printList()
 
+
 {  # ?Reverse LL
-  # ll = LinkedList()
   # ll.push(1)
   # ll.push(2)
   # ll.push(3)
@@ -613,7 +643,6 @@ if __name__ == '__main__':
   # l1.printList()
 
   # ?Linked List Cycle
-  # ll = LinkedList()
   # ll.addToList(20)
   # ll.addToList(4)
   # ll.addToList(15)
@@ -623,6 +652,15 @@ if __name__ == '__main__':
   #   print('Loop Found')
   # else:
   #   print('No Loop')
+
+  # ?Reorder List
+  # ll.push(4)
+  # ll.push(3)
+  # ll.push(2)
+  # ll.push(1)
+  # ll.printList()
+  # ll.reorderList()
+  # ll.printList()
   }
 # ?Linked List =======================================
 
