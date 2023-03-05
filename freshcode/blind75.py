@@ -568,6 +568,37 @@ class LinkedList(object):
     left.next = left.next.next
     return dummy.next
 
+# 23 - Merge k Sorted Lists - 
+  def mergeKLists(self, lists):
+        if not lists or len(lists) == 0:
+            return None
+
+        while len(lists) > 1:
+            mergedLists = []
+            for i in range(0, len(lists), 2):
+                l1 = lists[i]
+                l2 = lists[i + 1] if (i + 1) < len(lists) else None
+                mergedLists.append(self.mergeList(l1, l2))
+            lists = mergedLists
+        return lists[0]
+  
+  def mergeList(self, l1, l2):
+        dummy = LLNode()
+        tail = dummy
+
+        while l1 and l2:
+            if l1.val < l2.val:
+                tail.next = l1
+                l1 = l1.next
+            else:
+                tail.next = l2
+                l2 = l2.next
+            tail = tail.next
+        if l1:
+            tail.next = l1
+        if l2:
+            tail.next = l2
+        return dummy.next
 
 # 21 - Merge two Sorted Lists - Linked List | Recursion
 # T O(), M O()
@@ -607,16 +638,6 @@ def mergeTwoLists(list1, list2):
 
 if __name__ == '__main__':
   ll = LinkedList()
-  # Remove Nth Node From End of List
-  ll.push(5)
-  ll.push(4)
-  ll.push(3)
-  ll.push(2)
-  ll.push(1)
-  ll.printList()
-  ll.removeNthFromEnd(3)
-  ll.printList()
-
 
 {  # ?Reverse LL
   # ll.push(1)
@@ -661,6 +682,34 @@ if __name__ == '__main__':
   # ll.printList()
   # ll.reorderList()
   # ll.printList()
+
+  # ?Remove Nth Node From End of List
+  # ll.push(5)
+  # ll.push(4)
+  # ll.push(3)
+  # ll.push(2)
+  # ll.push(1)
+  # ll.printList()
+  # ll.removeNthFromEnd(3)
+  # ll.printList()
+
+  # ?Merge k Sorted Lists
+  # ll1 = LinkedList()
+  # ll1.push(1)
+  # ll1.push(4)
+  # ll1.push(5)
+  # ll2 = LinkedList()
+  # ll2.push(1)
+  # ll2.push(3)
+  # ll2.push(4)
+  # ll3 = LinkedList()
+  # ll3.push(2)
+  # ll3.push(6)
+  # ll = LinkedList()
+  # ll.push([ll1])
+  # ll.push([ll2])
+  # ll.push([ll3])
+  # ll.mergeKLists(ll)
   }
 # ?Linked List =======================================
 
