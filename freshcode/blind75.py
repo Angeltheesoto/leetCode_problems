@@ -716,20 +716,40 @@ if __name__ == '__main__':
 # ?Trees =======================================
 # This creates our tree.
 class TreeNode(object):
-  def __init__(self, val=0, left=None, right=None):
-    self.val = val
-    self.left = left
-    self.right = right
+  def __init__(self, value):
+    self.value = value
+    self.left = None
+    self.right = None
 
-  def PrintTree ( self ):
-      if self.left :
-          self.left.PrintTree ()
-      print ( self.val, end= ' ' ) ,
-      if self.right :
-          self.right.PrintTree ()
+class BinarySearchTree(object):
+  def __init__(self):
+    self.root = None
+  def printt(self, curr_node):
+        if curr_node != None:
+            self.printt(curr_node.left)
+            print(str(curr_node.value))
+            self.printt(curr_node.right)
+  def insert(self, value):
+      new_node = TreeNode(value)
+      if self.root == None:
+        self.root = new_node
+      else:
+        curr = self.root
+        while(curr):
+          if(value < curr.value):
+            if(curr.left == None):
+              curr.left = new_node
+              return
+            else:
+              curr = curr.left
+          else:
+            if(curr.right == None):
+              curr.right = new_node
+              return
+            else:
+              curr = curr.right
 
-class Tree_Functions(object):
-# 226 - Invert Binary Tree - Tree | Depth-First Search(DFS) | Breadth-First Search(BFS) | Binary Tree
+# 226 - Invert Binary Tree - Tree | DFS ..
   def invertTree(self, root):
     if not root:
       return None
@@ -742,24 +762,73 @@ class Tree_Functions(object):
     self.invertTree(root.right)
     return root
 
-# 104 - Maximum Depth of Binary Tree - Tree | Depth-First Search(DFS) | Breadth-First Search(BFS) | Binary Tree
+# 104 - Maximum Depth of Binary Tree - Tree | DFS ..
   def maxDepth(self, root):
-    pass
+      if not root:
+          return 0
+      return 1 + max(self.maxDepth(root.left), self.maxDepth(root.right))
 
-# if __name__ == '__main__':
-# This creates our tree.
-# INVERT TREE
-  # create_tree = TreeNode(4)
-  # create_tree.left = TreeNode(2)
-  # create_tree.right = TreeNode(7)
-  # create_tree.left.left = TreeNode(1)
-  # create_tree.right.right = TreeNode(9)
-  # print('Initial Tree :',end = ' ' )
-  # create_tree.PrintTree()
-  # # This inverts our tree.
-  # Tree_Functions().invertTree(root=create_tree)
-  # print('\nInverted Tree :', end=' ')
-  # create_tree.PrintTree()
+# 100 - Same Tree - Tree | 
+  def isSameTree(self, p, q):
+      if not p and not q:
+          return True
+      if p is not None and q is not None:
+          return ((p.value == q.value) and self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right))
+      return False
+
+# 573 - Subtree of Another Tree - Tree | 
+  def isSubtree(self, root, subRoot):
+        if not subRoot: return True
+        if not root: return False
+        if self.isSameTree(root, subRoot):
+            return True
+        return (self.isSubtree(root.left, subRoot) or
+        self.isSubtree(root.right, subRoot))
+
+# 235 - Lowest Common Ancestor of a Binary Search Tree - Tree | ..
+  def lowestCommonAncestor(self, root, p, q):
+    # find the LCA of two nodes given by p and q.
+    curr = root
+    while curr:
+      if p.value > curr.value and q.value > curr.value:
+        curr = curr.right
+      elif p.value < curr.value and q.value < curr.value:
+        curr = curr.left
+      else:
+        return curr.value
+
+if __name__ == '__main__':
+  # myTree2 = BinarySearchTree()
+  # myTree2.insert(2)
+  # myTree2.insert(1)
+  # myTree2.insert(4)
+  # myTree2.insert(3)
+  # myTree2.insert(5)
+  myTree = BinarySearchTree()
+  myTree.insert(2)
+  myTree.insert(2)
+  myTree.insert(1)
+  myTree.insert(4)
+  myTree.insert(3)
+  myTree.insert(5)
+  # myTree.printt(myTree.root)
+
+{
+  # Inver Binary Tree
+  # print(myTree.invertTree(myTree.root))
+
+  # Maximum Depth of Binary Tree
+  # print(myTree.maxDepth(myTree.root))
+
+  # Same Tree
+  # print(myTree.isSameTree(myTree.root, myTree2.root))
+
+  # Subtree of Another Tree
+  # print(myTree.isSubtree(myTree.root, myTree2.root))
+
+  # Lowest Common Ancestor of a Binary Search Tree
+  # print(myTree.lowestCommonAncestor(myTree.root, TreeNode(1), TreeNode(8)))
+}
 # ?Trees =======================================
 
 # ?1-D Dynamic Programming =======================================
