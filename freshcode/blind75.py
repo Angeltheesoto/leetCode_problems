@@ -797,6 +797,35 @@ class BinarySearchTree(object):
       else:
         return curr.value
 
+# 102 - Binary Tree Level Order Traversal - Tree | ..
+  def levelOrder(self, root):
+    # if not root:
+    #   return []
+    # result = []
+    # queue = [root]
+    # while queue:
+    #   node = queue.pop(0)
+    #   result.append(node.value)
+    #   if node.left:
+    #     queue.append(node.left)
+    #   if node.right:
+    #     queue.append(node.right)
+    # return result
+    res = []
+    q = [root]
+    while q:
+      qLen = len(q)
+      level = []
+      for i in range(qLen):
+        node = q.pop(0)
+        if node:
+          level.append(node.value)
+          q.append(node.left)
+          q.append(node.right)
+      if level:
+        res.append(level)
+    return res
+
 if __name__ == '__main__':
   # myTree2 = BinarySearchTree()
   # myTree2.insert(2)
@@ -806,12 +835,16 @@ if __name__ == '__main__':
   # myTree2.insert(5)
   myTree = BinarySearchTree()
   myTree.insert(2)
-  myTree.insert(2)
   myTree.insert(1)
   myTree.insert(4)
   myTree.insert(3)
   myTree.insert(5)
-  # myTree.printt(myTree.root)
+  myTree.printt(myTree.root)
+  #     2
+  #    / \
+  #   1   4
+  #      / \
+  #     3   5
 
 {
   # Inver Binary Tree
@@ -828,6 +861,9 @@ if __name__ == '__main__':
 
   # Lowest Common Ancestor of a Binary Search Tree
   # print(myTree.lowestCommonAncestor(myTree.root, TreeNode(1), TreeNode(8)))
+
+  # Binary Tree Level Order Traversal
+  # print(myTree.levelOrder(myTree.root))
 }
 # ?Trees =======================================
 
